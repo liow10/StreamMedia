@@ -1,0 +1,38 @@
+# 开发环境配置
+server:
+  # 服务端口
+  port: 18094
+  servlet:
+    # 项目contextPath
+    context-path: /iot-rtmp
+
+
+# Spring
+spring:
+  application:
+    # 应用名称
+    name: communication-video-rtmp2admin
+  profiles:
+    # 环境配置
+    active: test
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        # 服务注册地址
+        server-addr: 127.0.0.1:8848
+#        server-addr: config4iot1.commons.iots.szsf:8848
+        group: dev
+        namespace: d588fe8f-383b-4133-a4fc-3089f989ec8a
+      config:
+        # 配置中心地址
+        server-addr: 127.0.0.1:8848
+#        server-addr: config4iot1.commons.iots.szsf:8848
+        group: dev
+        namespace: d588fe8f-383b-4133-a4fc-3089f989ec8a
+        # 配置文件格式
+        file-extension: yml
+        # 共享配置
+        shared-configs:
+          - communication-video-rtmp2admin-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}

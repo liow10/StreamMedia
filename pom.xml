@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<!--     <parent>
+		<groupId>com.mkst.micro-iotclouds-communication</groupId>
+		<version>2.0</version>
+		<artifactId>communication-videos-parent</artifactId>
+	</parent> -->
+	<parent>
+		<!--<groupId>com.mkst.micro-iots</groupId>
+		<artifactId>micro-env4iots-parents</artifactId>
+		<version>2.0</version>-->
+        <groupId>com.wang.live</groupId>
+        <artifactId>event-parent</artifactId>
+        <version>2.0</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	    <java.version>1.8</java.version>
+        <lombok.version>1.18.2</lombok.version>
+
+
+        <red5-io.version>1.0.4-RELEASE</red5-io.version>
+        <red5-server-common.version>1.0.4-RELEASE</red5-server-common.version>
+        <mp4parser.version>1.9.34</mp4parser.version>
+         <mina.version>2.0.8</mina.version>
+
+        <javacv.version>1.5.4</javacv.version>
+		<opencv.version>4.4.0-1.5.4</opencv.version>
+		<ffmpeg.version>4.3.1-1.5.4</ffmpeg.version>
+         <javacpp.platform.dependencies>windows-x86_64</javacpp.platform.dependencies>
+<!--           <javacpp.platform.dependencies>linux-x86_64</javacpp.platform.dependencies>-->
+<!--            <javacpp.platform.dependencies>linux-arm64</javacpp.platform.dependencies>-->
+
+    </properties>
+	<groupId>com.mkst.micro-iotclouds-communication</groupId>
+	<artifactId>communication-videos-live2output</artifactId>
+	<modules>
+		<!-- <module>communication-videos-gb2input-core</module>
+		<module>communication-videos-gb2input-process</module>
+		<module>communication-videos-gb2input-admin</module> -->
+		<module>communication-videos-live2output-core</module>
+	<!-- 	<module>communication-videos-live2output-gb28181</module> -->
+		<module>communication-videos-live2output-http2</module>
+		<module>communication-videos-live2output-rtmp</module>
+		<module>communication-videos-live2output-rtsp</module>
+		<module>communication-videos-live2output-websocket</module>
+		<module>communication-videos-live2output-hls</module>
+		<module>communication-videos-live2output-mp4</module>
+		<module>communication-videos-live2output-admin</module>
+	</modules>
+	<packaging>pom</packaging>
+	<dependencyManagement>
+	   <dependencies>
+	         <dependency>
+                <groupId>com.mkst.micro-iotclouds-communication</groupId>
+				<artifactId>communication-videos-live2output-rtmp</artifactId>
+				<version>${project.version}</version>
+           </dependency>
+           <dependency>
+              <groupId>com.mkst.micro-iotclouds-communication</groupId>
+	          <artifactId>communication-videos-live2output-core</artifactId>
+				<version>${project.version}</version>
+         </dependency>
+
+         <dependency>
+            <groupId>com.mkst.micro-iotclouds-communication</groupId>
+	        <artifactId>communication-videos-live2output-rtsp</artifactId>
+				<version>${project.version}</version>
+         </dependency>
+
+         <dependency>
+            <groupId>com.mkst.micro-iotclouds-communication</groupId>
+	        <artifactId>communication-videos-live2output-websocket</artifactId>
+				<version>${project.version}</version>
+         </dependency>
+
+         <dependency>
+            <groupId>com.mkst.micro-iotclouds-communication</groupId>
+	        <artifactId>communication-videos-live2output-http2</artifactId>
+				<version>${project.version}</version>
+         </dependency>
+
+         <dependency>
+            <groupId>com.mkst.micro-iotclouds-communication</groupId>
+	        <artifactId>communication-videos-live2output-gb28181</artifactId>
+				<version>${project.version}</version>
+         </dependency>
+
+         <dependency>
+            <groupId>com.mkst.micro-iotclouds-communication</groupId>
+	        <artifactId>communication-videos-live2output-mp4</artifactId>
+				<version>${project.version}</version>
+         </dependency>
+
+
+    <!--     <dependencies>
+	        <dependency>
+	              <groupId>com.mkst.micro-iots</groupId>
+	              <artifactId>communication-videos-live2output</artifactId>
+	              <version>${micro-iots.version}</version>
+	              <type>pom</type>
+	              <scope>import</scope>
+	      </dependency> -->
+
+         <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacv</artifactId>
+            <version>${javacv.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bytedeco</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+		   <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacpp</artifactId>
+            <version>${javacv.version}</version>
+            <classifier>${javacpp.platform.dependencies}</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>opencv</artifactId>
+            <version>${opencv.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>opencv</artifactId>
+            <version>${opencv.version}</version>
+            <classifier>${javacpp.platform.dependencies}</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>ffmpeg</artifactId>
+            <version>${ffmpeg.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>ffmpeg</artifactId>
+            <version>${ffmpeg.version}</version>
+            <classifier>${javacpp.platform.dependencies}</classifier>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.red5</groupId>
+            <artifactId>red5-server-common</artifactId>
+            <version>${red5-server-common.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.red5</groupId>
+            <artifactId>red5-io</artifactId>
+            <version>${red5-io.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.mp4parser</groupId>
+            <artifactId>isoparser</artifactId>
+            <version>${mp4parser.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mp4parser</groupId>
+            <artifactId>muxer</artifactId>
+            <version>${mp4parser.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.mina</groupId>
+            <artifactId>mina-core</artifactId>
+            <version>${mina.version}</version>
+        </dependency>
+
+	   </dependencies>
+	</dependencyManagement>
+</project>

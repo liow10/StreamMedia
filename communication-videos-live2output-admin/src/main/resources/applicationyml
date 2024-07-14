@@ -1,0 +1,89 @@
+# 项目相关配置
+systemplus:
+  # 名称
+  name: IOT物联通讯管理平台-RTMP通讯服务
+  # 版本
+  version: 1.0.0
+  versionNumber: 310
+  # 版权年份
+  copyrightYear: 2020
+  # 获取ip地址开关
+  addressEnabled: false
+  # 文件上传路径
+  #profile: D:\webcase\files\ #开发环境
+  #profile: D:\case-tomcat\files\ #开发环境
+  profile: d:/resources/iot/files/ #测试环境
+
+# 数据源配置
+spring:
+    main:
+       allow-bean-definition-overriding: true
+
+communication:
+    isHaproxy: false
+    tcp:
+       port: 4001
+       secondPort: 6962
+       epoll: false
+    coap:
+       coapport: 6960
+       coapsport: 6961
+    rtmp:
+      running: true
+      ffmpegWindow: D:\ffmpeg-win64-static\bin\ffmpeg.exe
+      ffmpegUnix: /usr/local/bin/ffmpeg
+      ffmpegLiveStream: rtmp://127.0.0.1:1935/live/
+      ffmpegPicPath: /resources/iot/rtmp/shots/
+      taskReconnectInterval: 5000
+      taRkreconnectMaxTimes: 10
+      threadCorePoolSize: 4
+      threadMaximumPoolSize: 5000
+      threadKeepAliveTime: 10
+      rtmpPort: 1935
+      saveMp4File: false
+      saveMp4FilePath: 
+      enableHttpFlv: true
+      httpFlvPort: 48080
+      saveFlvFile: false
+      saveFlVFilePath: /resources/iot/rtmp/flv/
+      handlerThreadPoolSize: 8
+      # 保存文件时间间隔(小时)
+      saveDataTimeInterval: 1
+      # 删除文件时间间隔(小时)
+      deleteDataTimeInterval: 1
+      # 删除多少小时前文件(小时)
+      deleteDataHour: 5
+      redisAddr: 127.0.0.1
+      redisAuth: 123456
+      iotLinkip: 192.168.1.52
+      iotLinkport: 18088
+      iotLink: iot
+    wss:
+      wssPort: 7443
+    rtsp:
+      port: 6665
+
+# 防止XSS攻击
+xss: 
+  # 过滤开关
+  enabled: true
+  # 排除链接（多个用逗号分隔）
+  excludes: /system/notice/*
+  # 匹配链接
+  urlPatterns: /system/*,/monitor/*,/tool/*
+
+mqtt:
+  host: ssl://127.0.0.1:8885
+  username: testOne
+  password: 6156ADE136B3BF385B595CF3A69BFAFF2D6AFE87FF3EE1B49224F51D0259B00B014BA7771064E9F46CBF67F27780AABCCC1C252142397FEE8316A91CB0C52176
+  cert-file: G:\projects\micro-iotclouds-communication\communication-protocol\communication-protocol-mqtt-broker\src\main\resources\keystore\mqtt-broker.pfx
+  cert-pwd: 123456
+
+
+# 开发环境配置
+server:
+  # 服务端口
+  port: 18094
+  servlet:
+    # 项目contextPath
+    context-path: /iot-rtmp
